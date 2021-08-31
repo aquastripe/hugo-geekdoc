@@ -38,7 +38,7 @@ This type of navigation needs to be enabled first by setting `geekdocMenuBundle`
 main:
   - name: Level 1
     ref: "/level-1"
-    icon: "notification"
+    icon: "gdoc_notification"
     sub:
       - name: Level 1.1
         ref: "/level-1/level-1-1"
@@ -58,7 +58,7 @@ main:
         ref: "/level-2/level-2-2"
 ```
 
-As an advantage you can add [icons](/features/icon-sets/) to your menu entries e.g. `icon: "notification"`.
+As an advantage you can add [icons](/features/icon-sets/) to your menu entries e.g. `icon: "gdoc_notification"`.
 
 [![Example bundle menu](/media/bundle-menu.png)](/media/bundle-menu.png)
 
@@ -78,15 +78,30 @@ As this is a special type of the bundle menu it is basically working in the same
 more:
   - name: News
     ref: "/#"
-    icon: "notification"
+    icon: "gdoc_notification"
   - name: Releases
     ref: "https://github.com/thegeeklab/hugo-geekdoc/releases"
     external: true
-    icon: "download"
+    icon: "gdoc_download"
   - name: "View Source"
     ref: "https://github.com/thegeeklab/hugo-geekdoc"
     external: true
-    icon: "github"
+    icon: "gdoc_github"
 ```
 
 [![Example bundle menu](/media/more-menu.png)](/media/more-menu.png)
+
+## Extra Header Menu
+
+If you want to customize the header menu, this can be achieved by using a data file written in YAML and placed at `data/menu/extra.yml`.
+
+**Example:**
+
+```Yaml
+---
+header:
+  - name: GitHub
+    ref: https://github.com/thegeeklab/hugo-geekdoc
+    icon: gdoc_github
+    external: true
+```
