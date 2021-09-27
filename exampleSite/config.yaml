@@ -7,11 +7,11 @@ pygmentsCodeFences: true
 timeout: 180000
 pluralizeListTitles: false
 
-# Geekdoc configuration
 disablePathToLower: true
 enableGitInfo: true
 
-# Needed for mermaid shortcodes
+enableRobotsTXT: true
+
 markup:
   goldmark:
     renderer:
@@ -20,9 +20,24 @@ markup:
     startLevel: 1
     endLevel: 9
 
+taxonomies:
+  tag: tags
+
+outputs:
+  home:
+    - HTML
+  page:
+    - HTML
+  section:
+    - HTML
+  taxonomy:
+    - HTML
+  term:
+    - HTML
+
 params:
-  # geekdocMenuBundle: true
   geekdocToC: 3
+  geekdocTagsToMenu: true
 
   geekdocRepo: https://github.com/thegeeklab/hugo-geekdoc
   geekdocEditPath: edit/main/exampleSite/content

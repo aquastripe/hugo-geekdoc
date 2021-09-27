@@ -21,6 +21,9 @@ pygmentsCodeFences = true
 disablePathToLower = true
 enableGitInfo = true
 
+# Required if you want to render robots.txt template
+enableRobotsTXT = true
+
 [markup]
   [markup.goldmark.renderer]
     # Needed for mermaid shortcode
@@ -28,6 +31,9 @@ enableGitInfo = true
   [markup.tableOfContents]
     startLevel = 1
     endLevel = 9
+
+[taxonomies]
+  tag = "tags"
 
 [params]
   # (Optional, default 6) Set how many table of contents levels to be showed on page.
@@ -97,6 +103,9 @@ enableGitInfo = true
 
   # (Optional, default true) Display a "Back to top" link in the site footer.
   geekdocBackToTop = true
+
+  # (Optional, default false) Enable or disable adding tags for post pages automatically to the navigation sidebar.
+  geekdocTagsToMenu = true
 ```
 
 {{< /tab >}}
@@ -114,6 +123,9 @@ pygmentsCodeFences: true
 disablePathToLower: true
 enableGitInfo: true
 
+# Required if you want to render robots.txt template
+enableRobotsTXT: true
+
 markup:
   goldmark:
     # Needed for mermaid shortcode
@@ -122,6 +134,9 @@ markup:
   tableOfContents:
     startLevel: 1
     endLevel: 9
+
+taxonomies:
+  tag: tags
 
 params:
   # (Optional, default 6) Set how many table of contents levels to be showed on page.
@@ -196,6 +211,9 @@ params:
 
   # (Optional, default true) Display a "Back to top" link in the site footer.
   geekdocBackToTop: true
+
+  # (Optional, default false) Enable or disable adding tags for post pages automatically to the navigation sidebar.
+  geekdocTagsToMenu: true
 ```
 
 {{< /tab >}}
