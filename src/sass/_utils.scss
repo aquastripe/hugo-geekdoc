@@ -57,12 +57,16 @@
   text-align: center;
 }
 
+.text-right {
+  text-align: right;
+}
+
 .no-wrap {
   white-space: nowrap;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .svg-sprite {
@@ -70,6 +74,10 @@
   width: 0;
   height: 0;
   overflow: hidden;
+}
+
+.table-wrap {
+  overflow: auto;
 }
 
 .badge-placeholder {

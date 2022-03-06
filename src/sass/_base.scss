@@ -122,6 +122,11 @@ a {
   }
 }
 
+i.gdoc-icon {
+  font-family: "GeekdocIcons";
+  font-style: normal;
+}
+
 img {
   vertical-align: middle;
 }
@@ -158,9 +163,9 @@ img {
 
 .icon {
   display: inline-block;
-  width: 1em;
-  height: 1em;
-  top: 0.125em;
+  width: 1.3em;
+  height: 1.3em;
+  vertical-align: middle;
   stroke-width: 0;
   stroke: currentColor;
   fill: currentColor;
@@ -189,6 +194,7 @@ img {
 
 .gdoc-brand {
   font-size: $font-size-32;
+  line-height: $font-size-32;
 
   &__img {
     margin-right: $padding-16;
@@ -199,10 +205,10 @@ img {
 
 .gdoc-menu-header {
   &__items {
-    display: inline-block;
+    display: flex;
 
-    :not(:last-child) {
-      margin-right: $padding-8;
+    > span {
+      margin-left: $padding-8;
     }
   }
 
@@ -228,8 +234,13 @@ img {
       font-weight: normal;
     }
 
-    > :first-child {
+    > :first-child,
+    > :first-child > :first-child {
       margin-top: 0;
+    }
+
+    section {
+      margin-top: $padding-32;
     }
   }
 
@@ -277,28 +288,28 @@ img {
     & ~ label {
       cursor: pointer;
 
-      .icon {
+      .icon.toggle {
         font-size: $font-size-12;
       }
     }
 
     &:not(:checked) {
       & ~ ul,
-      & ~ label .icon.gdoc_keyborad_arrow_down {
+      & ~ label .icon.gdoc_keyboard_arrow_down {
         display: none;
       }
-      & ~ label .icon.gdoc_keyborad_arrow_left {
+      & ~ label .icon.gdoc_keyboard_arrow_left {
         display: block;
       }
     }
 
     &:checked {
       & ~ ul,
-      & ~ label .icon.gdoc_keyborad_arrow_down {
+      & ~ label .icon.gdoc_keyboard_arrow_down {
         display: block;
       }
 
-      & ~ label .icon.gdoc_keyborad_arrow_left {
+      & ~ label .icon.gdoc_keyboard_arrow_left {
         display: none;
       }
     }
@@ -310,15 +321,11 @@ img {
   &--main > ul > li > label > a {
     font-weight: bold;
   }
-
-  &--tags,
-  &--more {
-    padding-top: $padding-8;
-  }
 }
 
 .gdoc-nav__entry,
-.gdoc-search__entry {
+.gdoc-search__entry,
+.gdoc-language__entry {
   flex: 1;
   color: var(--body-font-color);
 
@@ -333,10 +340,32 @@ img {
   }
 }
 
+.gdoc-search__list,
+.gdoc-language__list {
+  background: var(--body-background);
+  border-radius: $border-radius;
+  box-shadow: 0 1px 3px 0 var(--accent-color), 0 1px 2px 0 var(--accent-color-lite);
+  position: absolute;
+  margin: 0;
+  padding: $padding-8 !important;
+  list-style: none;
+  top: calc(100% + #{$padding-8});
+  z-index: 2;
+}
+
 .gdoc-page {
-  min-width: $body-min-width;
+  min-width: calc($body-min-width - $padding-16 * 2);
   flex-grow: 1;
   padding: $padding-16 0;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+  }
 
   &__header,
   &__footer {
@@ -358,28 +387,12 @@ img {
     border-radius: $border-radius;
   }
 
-  &__footer {
-    margin-top: $padding-32;
-
-    a:hover {
-      text-decoration: none;
-    }
-  }
-
   &__nav {
     &:hover {
       background-image: linear-gradient(var(--link-color), var(--link-color));
       background-position: 0 100%;
       background-size: 100% 1px;
       background-repeat: no-repeat;
-    }
-    &--prev:before {
-      font-family: GeekdocIcons;
-      content: "\ea13";
-    }
-    &--next:after {
-      font-family: GeekdocIcons;
-      content: "\ea02";
     }
   }
 
@@ -408,13 +421,20 @@ img {
       color: transparent;
     }
   }
+
+  &__footer {
+    margin-top: $padding-32;
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .gdoc-post {
   word-wrap: break-word;
   border-top: 1px dashed $gray-600;
   padding: $padding-32 0;
-  line-height: 1.5em;
 
   &:first-of-type {
     padding-top: 0;
@@ -447,12 +467,7 @@ img {
   }
 
   &__readmore {
-    margin: 1.5rem 0 2rem 0;
-
-    a:after {
-      font-family: GeekdocIcons;
-      content: "\ea02";
-    }
+    margin: $padding-32 0;
 
     a,
     a:hover,
@@ -462,30 +477,68 @@ img {
     }
   }
 
-  &__tag {
-    margin: $padding-4 0 !important;
-
-    .gdoc-button {
-      background: var(--body-background);
-
-      &__link {
-        padding: $padding-4 $padding-8;
-      }
+  &__meta {
+    span .icon {
+      margin-left: -5px;
     }
-  }
 
-  &__meta {
-    padding-bottom: $padding-16;
-  }
-
-  &__footer,
-  &__meta {
-    :not(:first-child).no-wrap {
-      margin-left: $padding-8;
+    > span {
+      margin: $padding-4 0;
+      &:not(:last-child) {
+        margin-right: $padding-8;
+      }
     }
 
     .icon {
-      font-size: $font-size-20;
+      font-size: 1.2em;
+    }
+
+    .gdoc-button {
+      margin: 0 $padding-2 0 0;
+    }
+
+    &--head {
+      margin-bottom: $padding-32;
+    }
+  }
+
+  &__codecontainer {
+    position: relative;
+
+    &:hover > .gdoc-post__codecopy {
+      visibility: visible;
+    }
+  }
+
+  &__codecopy {
+    visibility: hidden;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+
+    border: $border-2 solid var(--code-copy-border-color);
+    border-radius: $border-radius;
+    background: var(--code-background);
+    width: 2.2rem;
+    height: 2.2rem;
+
+    .icon {
+      top: 0;
+      width: $font-size-20;
+      height: $font-size-20;
+      color: var(--code-copy-font-color);
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--success {
+      border-color: var(--code-copy-success-color);
+
+      .icon {
+        color: var(--code-copy-success-color);
+      }
     }
   }
 }
@@ -495,17 +548,14 @@ img {
   color: var(--footer-font-color);
 
   .fake-link:hover {
-    background-image: linear-gradient(
-      var(--footer-link-color),
-      var(--footer-link-color)
-    );
+    background-image: linear-gradient(var(--footer-link-color), var(--footer-link-color));
   }
 
   &__item {
     line-height: 2em;
 
     &--row {
-      margin-right: 1em;
+      margin-right: $padding-16;
     }
   }
 
@@ -570,18 +620,8 @@ img {
 
   &__list {
     visibility: hidden;
-    background: var(--body-background);
-    border-radius: $border-radius;
-    box-shadow: 0 1px 3px 0 var(--accent-color),
-      0 1px 2px 0 var(--accent-color-lite);
-    position: absolute;
-    margin: 0;
-    padding: $padding-8;
-    list-style: none;
     left: 0;
-    top: calc(100% + #{$padding-8});
     width: 100%;
-    z-index: 2;
 
     ul {
       list-style: none;
@@ -609,6 +649,33 @@ img {
   &:focus-within &__list.has-hits,
   &__list.has-hits:active {
     visibility: visible;
+  }
+}
+
+.gdoc-language {
+  &__selector {
+    position: relative;
+    list-style: none;
+    user-select: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    &:focus,
+    &:focus-within,
+    &:active {
+      .gdoc-language__list {
+        display: block;
+      }
+    }
+  }
+
+  &__list {
+    display: none;
+    right: 0;
+    width: auto;
+    white-space: nowrap;
   }
 }
 

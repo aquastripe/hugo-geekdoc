@@ -2,6 +2,7 @@
 ci:
   collect:
     numberOfRuns: 3
+    psiStrategy: desktop
     staticDistDir: exampleSite/public
     url:
       - http://localhost/
@@ -18,6 +19,7 @@ ci:
       csp-xss: off
       tap-targets: warn
       unsized-images: warn
+      image-size-responsive: warn
       # FIXME: https://github.com/GoogleChrome/lighthouse/issues/11460
       categories:performance:
         - warn

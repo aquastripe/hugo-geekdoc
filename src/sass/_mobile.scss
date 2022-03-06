@@ -17,6 +17,7 @@
 
   .gdoc-brand {
     font-size: $font-size-24;
+    line-height: $font-size-24;
 
     &__img {
       display: none;
@@ -30,7 +31,7 @@
 
     &__control,
     &__home {
-      display: inline-block;
+      display: flex;
     }
   }
 
@@ -60,10 +61,8 @@
     display: none;
   }
 
-  .gdoc-footer {
-    &__item--row {
-      width: 100%;
-    }
+  .flex-mobile-column {
+    flex-direction: column;
   }
 
   #menu-control:checked ~ main {
@@ -88,17 +87,17 @@
   }
 
   #menu-header-control:checked ~ .gdoc-header {
-    .gdoc-brand__title {
+    .gdoc-brand {
       display: none;
     }
 
     .gdoc-menu-header {
       &__items {
-        display: inline-block;
+        display: flex;
       }
 
       &__control {
-        .icon.gdoc_keyborad_arrow_left {
+        .icon.gdoc_keyboard_arrow_left {
           display: none;
         }
       }

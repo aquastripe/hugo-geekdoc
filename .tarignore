@@ -8,10 +8,12 @@
 .markdownlint*
 .jsbeautify*
 .prettier*
-.vnu*
+.eslintrc*
 .chglog
+.vnuignore
 example*
-gulp*
+webpack*
+svgsprite*
 package*
 node*
 local*
